@@ -1,20 +1,23 @@
 # Multi-stage build for Astro blog
 FROM node:20-alpine AS builder
 
+# Install pnpm
+RUN corepack enable && corepack prepare pnpm@latest --activate
+
 # Install build dependencies
 WORKDIR /app
 
 # Copy package files
-COPY package*.json ./
+COPY package.json pnpm-lock.yaml ./
 
 # Install dependencies
-RUN npm ci
+RUN pnpm install --frozen-lockfile
 
 # Copy source files
 COPY . .
 
 # Build the Astro site
-RUN npm run build
+RUN pnpm run build
 
 # Production stage - serve static files with nginx
 FROM nginx:alpine AS runtime
