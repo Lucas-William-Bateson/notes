@@ -1,0 +1,9 @@
+[build]
+dockerfile = "Dockerfile"
+context = "."
+
+[deploy]
+name = "blog"
+domain = "notes.l3s.me"
+port = 80
+compose_file = "docker-compose.yml"
