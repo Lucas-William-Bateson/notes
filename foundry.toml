@@ -1,9 +1,29 @@
 [build]
 dockerfile = "Dockerfile"
 context = "."
+timeout = 1800
+
+[triggers]
+branches = ["main"]
+pull_requests = true
+
+[[stages]]
+name = "install"
+command = "pnpm install --frozen-lockfile"
+
+[[stages]]
+name = "build"
+command = "pnpm run build"
 
 [deploy]
 name = "blog"
 domain = "notes.l3s.me"
 port = 80
 compose_file = "docker-compose.yml"
+
+[schedule]
+cron = "0 3 * * *"
+branch = "main"
+
+[env]
+NODE_ENV = "production"
