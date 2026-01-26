@@ -22,7 +22,7 @@ port = 80
 compose_file = "docker-compose.yml"
 
 [schedule]
-cron = "0 3 * * *"
+cron = "0 0 3 * * * *"
 branch = "main"
 enabled = true
 timezone = "UTC"
