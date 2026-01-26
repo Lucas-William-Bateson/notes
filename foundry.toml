@@ -24,6 +24,8 @@ compose_file = "docker-compose.yml"
 [schedule]
 cron = "0 3 * * *"
 branch = "main"
+enabled = true
+timezone = "UTC"
 
 [env]
 NODE_ENV = "production"
