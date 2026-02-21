@@ -39,3 +39,5 @@ data/
 uploads/
 storage/
 .astro/
+# Secrets
+secrets.env
